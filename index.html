@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Salle de Sport</title>
+    <title>Mon Programme Sport - Premium</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>🏋️‍♂️ Ma Salle</h1>
+        <p>Programme Personnel | Boucau 2024</p>
     </header>
-    
-    <div class="tabs">
-        <button onclick="openTab('cardio')">Cardio</button>
-        <button onclick="openTab('muscu')">Muscu</button>
-    </div>
 
-    <main id="cardio" class="tab-content">
-        <h2>Cardio</h2>
-        <p>Elliptique : 30 min</p>
-        <p>Tapis de marche</p>
-    </main>
+    <main>
+        <section id="cardio">
+            <h2>Le Pôle Cardio</h2>
+            <p><strong>Cible:</strong> 25 minutes | <strong>Intensité:</strong> 6-7</p>
+            <p>Commence par un échauffement progressif sur le tapis de course ou l'elliptique[cite: 7].</p>
+        </section>
 
-    <main id="muscu" class="tab-content" style="display:none;">
-        <h2>Musculation</h2>
-        <p>Presse à cuisse</p>
-        <p>Tirage vertical</p>
+        <section id="muscu">
+            <h2>Pôle Musculation</h2>
+            <table>
+                <tr>
+                    <th>Exercice</th>
+                    <th>Charge Cible</th>
+                    <th>Charge Réelle</th>
+                    <th>Évolution</th>
+                </tr>
+                <tr>
+                    <td>Presse à Cuisse</td>
+                    <td>120 kg</td>
+                    <td>120 kg</td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>Tirage Vertical</td>
+                    <td>45 kg</td>
+                    <td>40 kg</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </section>
     </main>
 
     <script src="script.js"></script>
