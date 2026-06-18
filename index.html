@@ -2,11 +2,32 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Salle de Sport</title>
     <link rel="stylesheet" href="style.css">
-    <title>Mon Sport</title>
 </head>
 <body>
-    <h1>🏋️‍♂️ Ma Salle</h1>
+    <header>
+        <h1>🏋️‍♂️ Ma Salle</h1>
+    </header>
+    
+    <div class="tabs">
+        <button onclick="openTab('cardio')">Cardio</button>
+        <button onclick="openTab('muscu')">Muscu</button>
+    </div>
+
+    <main id="cardio" class="tab-content">
+        <h2>Cardio</h2>
+        <p>Elliptique : 30 min</p>
+        <p>Tapis de marche</p>
+    </main>
+
+    <main id="muscu" class="tab-content" style="display:none;">
+        <h2>Musculation</h2>
+        <p>Presse à cuisse</p>
+        <p>Tirage vertical</p>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

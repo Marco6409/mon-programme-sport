@@ -1,1 +1,7 @@
-/* Style vide */
+body { font-family: sans-serif; text-align: center; background-color: #f4f4f9; padding: 20px; }
+header { background: #333; color: white; padding: 15px; border-radius: 8px; }
+.tabs { margin: 20px 0; }
+button { padding: 10px 20px; cursor: pointer; }
+.tab-content { background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
+
+3. script.js (La logique des onglets)
