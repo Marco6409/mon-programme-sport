@@ -17,78 +17,53 @@
     </div>
 
     <div id="programme" class="container">
-        <section>
-            <h2>Ma Séance Type (Lundi, Mercredi, Vendredi)</h2>
-            
-            <div class="cardio-box" style="margin-bottom: 20px; padding: 15px; background: #333; border-radius: 8px;">
-                <h3>Cardio : 30 min Elliptique</h3>
+        
+        <section style="background: #252525; padding: 20px; border-radius: 10px; border: 1px solid #f1c40f; margin-bottom: 30px;">
+            <h2>📈 Suivi de ma progression</h2>
+            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <label>Mon poids cette semaine (kg) :</label>
+                <input type="number" step="0.1" class="input-charge" style="width: 100px; font-size: 1.2rem; background: #000; color: #f1c40f; padding: 5px; border-radius: 5px; border: 1px solid #444;" value="109.6">
             </div>
-
-<table>
-    <thead>
-        <tr>
-            <th>Exercice</th>
-            <th>Charge Cible</th>
-            <th>Réel</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Tirage vertical</td>
-            <td>50 kg</td>
-            <td><input type="number" value="50" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Presse à cuisse</td>
-            <td>80 kg</td>
-            <td><input type="number" value="80" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Pec Deck / Chest Press</td>
-            <td>47 kg</td>
-            <td><input type="number" value="47" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Tirage horizontal</td>
-            <td>40 kg</td>
-            <td><input type="number" value="40" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Presse à épaules</td>
-            <td>30 kg</td>
-            <td><input type="number" value="30" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Leg Curl / Extension</td>
-            <td>40 kg</td>
-            <td><input type="number" value="40" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Triceps / Biceps</td>
-            <td>8 kg</td>
-            <td><input type="number" value="8" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Crunch</td>
-            <td>15 kg</td>
-            <td><input type="number" value="15" class="input-charge"></td>
-        </tr>
-        <tr>
-            <td>Mollets</td>
-            <td>80 kg</td>
-            <td><input type="number" value="80" class="input-charge"></td>
-        </tr>
-    </tbody>
-</table>
+            <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">
+                <em>Départ : 116.3 kg | Objectif : 100 kg</em>
+            </p>
         </section>
 
         <section>
-            <h2>Technique & Posture</h2>
-            <ul>
-                <li><strong>Plaquage :</strong> Garde le bas du dos collé au siège.</li>
-                <li><strong>Tempo :</strong> 2 secondes de montée, 2 secondes de descente contrôlée.</li>
-                <li><strong>Hydratation :</strong> 1 gorgée entre chaque série.</li>
-            </ul>
+            <h2>Zone 1 : Cardio</h2>
+            <table>
+                <thead><tr><th>Machine</th><th>Temps (min)</th><th>Niveau / Intensité</th></tr></thead>
+                <tbody>
+                    <tr><td>Rameur / Vélo / Tapis</td>
+                        <td><input type="number" class="input-charge" value="30"></td>
+                        <td><input type="number" class="input-charge" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Zone 2 : Haut du Corps</h2>
+            <table>
+                <thead><tr><th>Exercice</th><th>Record (PR)</th><th>Réel</th><th>Intensité (1-10)</th></tr></thead>
+                <tbody>
+                    <tr><td>Tirage Vertical</td><td><input type="number" class="input-charge" value="55"></td><td><input type="number" class="input-charge" value="50"></td><td><input type="number" class="input-charge" value="8"></td></tr>
+                    <tr><td>Chest Press / Pec Deck</td><td><input type="number" class="input-charge" value="50"></td><td><input type="number" class="input-charge" value="47"></td><td><input type="number" class="input-charge" value="7"></td></tr>
+                    <tr><td>Épaules Guidées</td><td><input type="number" class="input-charge" value="35"></td><td><input type="number" class="input-charge" value="30"></td><td><input type="number" class="input-charge" value="9"></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Zone 3 : Bas du Corps</h2>
+            <table>
+                <thead><tr><th>Exercice</th><th>Record (PR)</th><th>Réel</th><th>Intensité (1-10)</th></tr></thead>
+                <tbody>
+                    <tr><td>Presse à Cuisses</td><td><input type="number" class="input-charge" value="90"></td><td><input type="number" class="input-charge" value="80"></td><td><input type="number" class="input-charge" value="8"></td></tr>
+                    <tr><td>Leg Curl / Extension</td><td><input type="number" class="input-charge" value="45"></td><td><input type="number" class="input-charge" value="40"></td><td><input type="number" class="input-charge" value="7"></td></tr>
+                    <tr><td>Abducteurs / Fessiers</td><td><input type="number" class="input-charge" value="40"></td><td><input type="number" class="input-charge" value="35"></td><td><input type="number" class="input-charge" value="7"></td></tr>
+                </tbody>
+            </table>
         </section>
     </div>
 
