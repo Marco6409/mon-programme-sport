@@ -1,20 +1,21 @@
 console.log("Programme Premium Salle 100 chargé. Bonne séance Marc !");
 
-// On sélectionne toutes les zones de saisie des charges
 const inputs = document.querySelectorAll('.input-charge');
 
-inputs.forEach((input, index) => {
-    // On crée une clé unique basée sur l'index de l'input dans toute la page
-    // Cela garantit qu'aucune case n'écrase une autre
-    const storageKey = 'input_' + index;
+// On récupère le nom de la page actuelle (ex: "haut.html")
+const pageName = window.location.pathname.split("/").pop() || "index";
 
-    // 1. Au chargement : on récupère la valeur sauvegardée
+inputs.forEach((input, index) => {
+    // La clé devient unique par page ET par position
+    const storageKey = 'salle100_' + pageName + '_' + index;
+
+    // 1. Charger
     const savedValue = localStorage.getItem(storageKey);
     if (savedValue !== null) {
         input.value = savedValue;
     }
 
-    // 2. Dès qu'on modifie une valeur, on la sauvegarde
+    // 2. Sauvegarder
     input.addEventListener('input', () => {
         localStorage.setItem(storageKey, input.value);
     });
