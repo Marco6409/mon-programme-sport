@@ -1,22 +1,42 @@
 console.log("Programme Premium Salle 100 chargé. Bonne séance Marc !");
 
-const inputs = document.querySelectorAll('.input-charge');
+// 1. Fonction pour calculer le total de la séance
+function calculateSessionTotal() {
+    let grandTotal = 0;
+    document.querySelectorAll('.card').forEach(card => {
+        const sets = parseFloat(card.querySelector('.sets')?.value) || 0;
+        const reps = parseFloat(card.querySelector('.reps')?.value) || 0;
+        const weight = parseFloat(card.querySelector('.weight')?.value) || 0;
+        
+        const totalExo = sets * reps * weight;
+        const totalSpan = card.querySelector('.total-weight');
+        if (totalSpan) totalSpan.textContent = totalExo;
+        
+        grandTotal += totalExo;
+    });
+    const grandTotalEl = document.getElementById('grand-total');
+    if (grandTotalEl) grandTotalEl.textContent = grandTotal;
+}
 
-// On récupère le nom de la page actuelle (ex: "haut.html")
+// 2. Gestion de la sauvegarde et des événements
+const inputs = document.querySelectorAll('.sets, .reps, .weight, .input-charge');
 const pageName = window.location.pathname.split("/").pop() || "index";
 
 inputs.forEach((input, index) => {
-    // La clé devient unique par page ET par position
     const storageKey = 'salle100_' + pageName + '_' + index;
 
-    // 1. Charger
+    // Charger la valeur sauvegardée
     const savedValue = localStorage.getItem(storageKey);
     if (savedValue !== null) {
         input.value = savedValue;
     }
 
-    // 2. Sauvegarder
+    // Sauvegarder lors de la saisie ET recalculer le total
     input.addEventListener('input', () => {
         localStorage.setItem(storageKey, input.value);
+        calculateSessionTotal();
     });
 });
+
+// Calcul initial au chargement de la page
+calculateSessionTotal();
