@@ -14,29 +14,53 @@ function calculateSessionTotal() {
         
         grandTotal += totalExo;
     });
+
     const grandTotalEl = document.getElementById('grand-total');
-    if (grandTotalEl) grandTotalEl.textContent = grandTotal;
+    const pageName = window.location.pathname.split("/").pop() || "index";
+    
+    if (grandTotalEl) {
+        grandTotalEl.textContent = grandTotal;
+        // Sauvegarde le total global de cette page pour le dashboard
+        localStorage.setItem('salle100_' + pageName + '_grandTotal', grandTotal);
+    }
 }
 
-// 2. Gestion de la sauvegarde et des événements
+// 2. Fonction pour mettre à jour le Dashboard
+function updateDashboard() {
+    const totalHaut = localStorage.getItem('salle100_haut.html_grandTotal') || 0;
+    const totalBas = localStorage.getItem('salle100_bas.html_grandTotal') || 0;
+    
+    const elHaut = document.getElementById('total-haut');
+    const elBas = document.getElementById('total-bas');
+    const elGlobal = document.getElementById('grand-total-global');
+
+    if (elHaut) elHaut.textContent = totalHaut;
+    if (elBas) elBas.textContent = totalBas;
+    if (elGlobal) elGlobal.textContent = parseInt(totalHaut) + parseInt(totalBas);
+}
+
+// 3. Gestion de la sauvegarde et des événements
 const inputs = document.querySelectorAll('.sets, .reps, .weight, .input-charge');
 const pageName = window.location.pathname.split("/").pop() || "index";
 
 inputs.forEach((input, index) => {
     const storageKey = 'salle100_' + pageName + '_' + index;
 
-    // Charger la valeur sauvegardée
     const savedValue = localStorage.getItem(storageKey);
     if (savedValue !== null) {
         input.value = savedValue;
     }
 
-    // Sauvegarder lors de la saisie ET recalculer le total
     input.addEventListener('input', () => {
         localStorage.setItem(storageKey, input.value);
         calculateSessionTotal();
+        if (pageName === 'dashboard.html') updateDashboard();
     });
 });
 
-// Calcul initial au chargement de la page
-calculateSessionTotal();
+// Initialisation
+if (pageName === 'dashboard.html') {
+    updateDashboard();
+} else {
+    calculateSessionTotal();
+}
