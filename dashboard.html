@@ -20,10 +20,13 @@
 
         <section class="card">
             <h3>📊 Récapitulatif Global</h3>
-            <p>Total Haut : <span id="total-haut">0</span> kg</p>
-            <p>Total Bas : <span id="total-bas">0</span> kg</p>
-            <p>Total Kcal cumulé : <span id="total-kcal-global">0</span> kcal</p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: #f1c40f;">
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <span style="flex: 1 1 45%;">Haut: <b id="total-haut">0</b> kg</span>
+                <span style="flex: 1 1 45%;">Bas: <b id="total-bas">0</b> kg</span>
+                <span style="flex: 1 1 45%;">Kcal: <b id="total-kcal-global">0</b></span>
+                <span style="flex: 1 1 45%;">Temps: <b id="total-cardio-time">0</b> min</span>
+            </div>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #f1c40f; margin-top: 10px;">
                 Grand Total : <span id="grand-total-global">0</span> kg
             </p>
         </section>
@@ -35,6 +38,7 @@
 
         <section class="card">
             <h3>📜 Historique des séances</h3>
+            <button onclick="enregistrerSeance()" style="background:#f1c40f; border:none; padding:5px 10px; cursor:pointer; border-radius:4px; margin-bottom:10px;">Enregistrer ma séance</button>
             <div id="historique-list" style="font-size: 0.9rem; color: #aaa;">
                 <p>Aucune séance enregistrée.</p>
             </div>
