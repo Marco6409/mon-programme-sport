@@ -14,14 +14,14 @@ nav a { color: #f1c40f; text-decoration: none; font-weight: bold; font-size: 1.1
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('fond.jpg'); /* Image de fond corrigée */
+    background-image: url('fond.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.7); /* Voile sombre pour la lisibilité */
+    background: rgba(0, 0, 0, 0.7);
     padding: 40px;
     border-radius: 20px;
     text-align: center;

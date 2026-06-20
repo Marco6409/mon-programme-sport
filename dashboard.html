@@ -2,13 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Mon Programme</title>
 </head>
 <body>
     <nav>
         <a href="index.html">Accueil</a> 
-        <a href="dashboard.html">Programme</a> 
+        <a href="dashboard.html">Prog</a> 
         <a href="cardio.html">Cardio</a>
         <a href="haut.html">Haut</a>
         <a href="bas.html">Bas</a>
@@ -18,11 +19,19 @@
         <h1>Mon Programme</h1>
         
         <section class="card">
-            <h2>📈 Suivi Poids</h2>
+            <h2>📈 Suivi</h2>
             <p>Mon poids actuel : <input type="number" step="0.1" class="input-charge" value="91.0"> kg</p>
+            <p>Kcal Séance : <input type="number" class="input-charge" placeholder="ex: 450"> kcal</p>
         </section>
 
-        </div>
+        <section class="card">
+            <h3>🏆 Records (PR)</h3>
+            <div class="row">
+                <span>Presse: <input type="number" class="input-charge" placeholder="kg"> kg</span>
+                <span>Tirage: <input type="number" class="input-charge" placeholder="kg"> kg</span>
+            </div>
+        </section>
+    </div>
     
     <script src="script.js"></script>
 </body>
