@@ -22,6 +22,7 @@
             <h3>📊 Récapitulatif Global</h3>
             <p>Total Haut : <span id="total-haut">0</span> kg</p>
             <p>Total Bas : <span id="total-bas">0</span> kg</p>
+            <p>Total Kcal cumulé : <span id="total-kcal-global">0</span> kcal</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: #f1c40f;">
                 Grand Total : <span id="grand-total-global">0</span> kg
             </p>
@@ -30,14 +31,12 @@
         <section class="card">
             <h2>📈 Suivi</h2>
             <p>Mon poids actuel : <input type="number" step="0.1" class="input-charge" value="91.0"> kg</p>
-            <p>Kcal Séance : <input type="number" class="input-charge" placeholder="ex: 450"> kcal</p>
         </section>
 
         <section class="card">
-            <h3>🏆 Records (PR)</h3>
-            <div class="row">
-                <span>Presse: <input type="number" class="input-charge" placeholder="kg"> kg</span>
-                <span>Tirage: <input type="number" class="input-charge" placeholder="kg"> kg</span>
+            <h3>📜 Historique des séances</h3>
+            <div id="historique-list" style="font-size: 0.9rem; color: #aaa;">
+                <p>Aucune séance enregistrée.</p>
             </div>
         </section>
     </div>

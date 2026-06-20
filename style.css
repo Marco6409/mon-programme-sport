@@ -103,3 +103,9 @@ h3 { margin: 0 0 10px 0; color: #f1c40f; }
     margin-top: 5px; 
     font-size: 1rem;
 }
+/* Style pour l'historique */
+#historique-list p {
+    margin: 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
