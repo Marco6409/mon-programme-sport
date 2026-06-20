@@ -1,9 +1,10 @@
-console.log("Programme Premium Salle 100 chargé !");
+console.log("Salle 100 : Script robuste chargé.");
 
-// 1. Calcul total poids, Kcal et Temps cardio
+// 1. Calcul des totaux par page
 function calculateSessionTotal() {
     let grandTotal = 0, totalKcal = 0, totalCardioTime = 0;
 
+    // Calcul Poids
     document.querySelectorAll('.card').forEach(card => {
         const sets = parseFloat(card.querySelector('.sets')?.value) || 0;
         const reps = parseFloat(card.querySelector('.reps')?.value) || 0;
@@ -13,63 +14,70 @@ function calculateSessionTotal() {
         grandTotal += totalExo;
     });
 
+    // Calcul Kcal et Temps
     document.querySelectorAll('.kcal-input').forEach(i => totalKcal += parseFloat(i.value) || 0);
     document.querySelectorAll('.cardio-time').forEach(i => totalCardioTime += parseFloat(i.value) || 0);
 
-    const pageName = window.location.pathname.split("/").pop() || "index";
-    localStorage.setItem('salle100_' + pageName + '_grandTotal', grandTotal);
-    localStorage.setItem('salle100_' + pageName + '_kcal', totalKcal);
-    localStorage.setItem('salle100_' + pageName + '_time', totalCardioTime);
+    const page = window.location.pathname.split("/").pop();
+    localStorage.setItem('salle100_GT_' + page, grandTotal);
+    localStorage.setItem('salle100_Kcal_' + page, totalKcal);
+    localStorage.setItem('salle100_Time_' + page, totalCardioTime);
 }
 
-// 2. Mise à jour Dashboard, Historique et totaux
+// 2. Gestion de la sauvegarde auto (basée sur les ID uniques)
+document.querySelectorAll('input').forEach(input => {
+    // Restaurer la valeur au chargement
+    if (input.id) {
+        const saved = localStorage.getItem('salle100_input_' + input.id);
+        if (saved !== null) input.value = saved;
+    }
+
+    input.addEventListener('input', () => {
+        if (input.id) localStorage.setItem('salle100_input_' + input.id, input.value);
+        calculateSessionTotal();
+        if (window.location.pathname.includes('dashboard')) updateDashboard();
+    });
+});
+
+// 3. Mise à jour Dashboard et Historique
 function updateDashboard() {
     const pages = ['haut.html', 'bas.html', 'cardio.html'];
-    let grandTotal = 0, totalKcal = 0, totalTime = 0;
-    
+    let gt = 0, kc = 0, tm = 0;
     pages.forEach(p => {
-        grandTotal += parseFloat(localStorage.getItem('salle100_' + p + '_grandTotal')) || 0;
-        totalKcal += parseFloat(localStorage.getItem('salle100_' + p + '_kcal')) || 0;
-        totalTime += parseFloat(localStorage.getItem('salle100_' + p + '_time')) || 0;
+        gt += parseFloat(localStorage.getItem('salle100_GT_' + p)) || 0;
+        kc += parseFloat(localStorage.getItem('salle100_Kcal_' + p)) || 0;
+        tm += parseFloat(localStorage.getItem('salle100_Time_' + p)) || 0;
     });
-
-    if (document.getElementById('total-haut')) document.getElementById('total-haut').textContent = localStorage.getItem('salle100_haut.html_grandTotal') || 0;
-    if (document.getElementById('total-bas')) document.getElementById('total-bas').textContent = localStorage.getItem('salle100_bas.html_grandTotal') || 0;
-    if (document.getElementById('total-kcal-global')) document.getElementById('total-kcal-global').textContent = totalKcal;
-    if (document.getElementById('total-cardio-time')) document.getElementById('total-cardio-time').textContent = totalTime;
-    if (document.getElementById('grand-total-global')) document.getElementById('grand-total-global').textContent = grandTotal;
+    
+    if (document.getElementById('total-haut')) document.getElementById('total-haut').textContent = localStorage.getItem('salle100_GT_haut.html') || 0;
+    if (document.getElementById('total-bas')) document.getElementById('total-bas').textContent = localStorage.getItem('salle100_GT_bas.html') || 0;
+    if (document.getElementById('total-kcal-global')) document.getElementById('total-kcal-global').textContent = kc;
+    if (document.getElementById('total-cardio-time')) document.getElementById('total-cardio-time').textContent = tm;
+    if (document.getElementById('grand-total-global')) document.getElementById('grand-total-global').textContent = gt;
     
     afficherHistorique();
 }
 
-// 3. Gestion Historique
 function enregistrerSeance() {
     const date = new Date().toLocaleDateString();
-    const totalGlobal = document.getElementById('grand-total-global').textContent;
-    const totalKcal = document.getElementById('total-kcal-global').textContent;
-    
-    let historique = JSON.parse(localStorage.getItem('salle100_historique')) || [];
-    historique.unshift({ date, totalGlobal, totalKcal });
-    localStorage.setItem('salle100_historique', JSON.stringify(historique.slice(0, 5)));
+    const data = { 
+        date, 
+        total: document.getElementById('grand-total-global')?.textContent || "0", 
+        kcal: document.getElementById('total-kcal-global')?.textContent || "0" 
+    };
+    let hist = JSON.parse(localStorage.getItem('salle100_historique')) || [];
+    hist.unshift(data);
+    localStorage.setItem('salle100_historique', JSON.stringify(hist.slice(0, 5)));
     afficherHistorique();
 }
 
 function afficherHistorique() {
     const list = document.getElementById('historique-list');
-    const historique = JSON.parse(localStorage.getItem('salle100_historique')) || [];
-    if (list && historique.length > 0) {
-        list.innerHTML = historique.map(s => `<p>${s.date} : <b>${s.totalGlobal} kg</b> | ${s.totalKcal} kcal</p>`).join('');
+    const hist = JSON.parse(localStorage.getItem('salle100_historique')) || [];
+    if (list) {
+        list.innerHTML = hist.length > 0 ? hist.map(s => `<p>${s.date} : <b>${s.total} kg</b> | ${s.kcal} kcal</p>`).join('') : '<p>Aucune séance.</p>';
     }
 }
-
-// 4. Événements
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', () => {
-        localStorage.setItem('salle100_val_' + input.className + input.parentElement.innerText, input.value);
-        calculateSessionTotal();
-        if (window.location.pathname.includes('dashboard')) updateDashboard();
-    });
-});
 
 if (window.location.pathname.includes('dashboard')) updateDashboard();
 else calculateSessionTotal();
